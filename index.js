@@ -4,6 +4,7 @@ const authRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");
 const cors = require("cors");
 require("dotenv").config();
+const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,

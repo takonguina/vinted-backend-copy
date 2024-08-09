@@ -2,7 +2,6 @@ const express = require("express");
 const fileupload = require("express-fileupload");
 const Offer = require("../models/Offer");
 const isAuthenticated = require("../middleware/isAuthenticated");
-const cloudinary = require("cloudinary").v2;
 
 const router = express.Router();
 
