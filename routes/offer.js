@@ -112,9 +112,10 @@ router.get("", async (req, res) => {
 
     const offers = await Offer.find(filter)
       .sort(sorted)
-      // 2 is the limit by page
-      .skip((page - 1) * 2)
-      .limit(2);
+      .populate("owner", "_id account");
+    // 2 is the limit by page
+    // .skip((page - 1) * 2)
+    // .limit(2);
     const response = {
       count: offers.length,
       offers: offers,
@@ -127,7 +128,10 @@ router.get("", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const offer = await Offer.findById(req.params.id);
+    const offer = await Offer.findById(req.params.id).populate(
+      "owner",
+      "_id account"
+    );
     res.json(offer);
   } catch (error) {
     return res.status(500).json({ message: error.message });
