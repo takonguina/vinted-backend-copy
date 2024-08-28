@@ -4,13 +4,6 @@ const authRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");
 const cors = require("cors");
 require("dotenv").config();
-const cloudinary = require("cloudinary").v2;
-
-cloudinary.config({
-  cloud_name: process.env.CLOUD_NAME,
-  api_key: process.env.API_KEY,
-  api_secret: process.env.API_SECRET,
-});
 
 mongoose.connect(process.env.MONGODB_URI);
 
