@@ -46,6 +46,7 @@ router.post("/publish", isAuthenticated, fileupload(), async (req, res) => {
       await newOffer.save();
     res.json(newOffer);
   } catch (error) {
+    console.log(error.message);
     return res.status(500).json({ message: error.message });
   }
 });
