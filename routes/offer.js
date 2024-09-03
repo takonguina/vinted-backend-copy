@@ -59,8 +59,21 @@ router.put("/modify/:id", isAuthenticated, fileupload(), async (req, res) => {
     );
     console.log(offer);
     if (offer) {
-      const { title, description, price, condition, city, brand, size, color } =
-        req.body;
+      const {
+        title,
+        description,
+        price,
+        condition,
+        city,
+        brand,
+        size,
+        color,
+        bought,
+      } = req.body;
+
+      if (bought) {
+        offer.bought = bought;
+      }
 
       if (title) {
         offer.product_name = title;
@@ -97,7 +110,7 @@ router.put("/modify/:id", isAuthenticated, fileupload(), async (req, res) => {
 router.get("", async (req, res) => {
   try {
     const { title, priceMin, priceMax, sort, page } = req.query;
-    const filter = {};
+    const filter = { bought: undefined };
     let sorted;
 
     if (sort) {
@@ -129,6 +142,7 @@ router.get("", async (req, res) => {
       count: offers.length,
       offers: offers,
     };
+
     res.json(response);
   } catch (error) {
     return res.status(500).json({ message: error.message });
