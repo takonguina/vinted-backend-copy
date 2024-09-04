@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const authRoutes = require("./routes/user");
 const offerRoutes = require("./routes/offer");
+const profilRoutes = require("./routes/profil");
 const cors = require("cors");
 require("dotenv").config();
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(express.json());
 app.use(authRoutes);
 app.use("/offer", offerRoutes);
+app.use("/profil", profilRoutes);
 
 app.post("/payment", async (req, res) => {
   const { amount, title } = req.body;
